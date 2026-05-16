@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兴化安丰大闸蟹 · 正宗原产地直供</title>
+    <style>
+        :root {
+            --orange: #D4843A;
+            --orange-light: #F0A855;
+            --orange-deep: #B5652A;
+            --brown-dark: #3C1F0F;
+            --brown-mid: #5D3422;
+            --brown-light: #7D4E32;
+            --cream: #FDF6EC;
+            --cream-warm: #F9EFE0;
+            --white: #FFFFFF;
+            --gray-light: #F5F0EB;
+            --gray-text: #6B5E53;
+            --text-dark: #2C1810;
+            --text-body: #4A3728;
+            --shadow-sm: 0 2px 8px rgba(60, 31, 15, 0.06);
+            --shadow-md: 0 6px 24px rgba(60, 31, 15, 0.10);
+            --shadow-lg: 0 12px 40px rgba(60, 31, 15, 0.14);
+            --shadow-xl: 0 20px 60px rgba(60, 31, 15, 0.18);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            --font-heading: 'PingFang SC', 'Noto Serif SC', 'STSong', 'Songti SC', 'SimSun', 'KaiTi', 'STKaiti', serif;
+            --font-body: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-body);
+            background-color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ========== 导航栏 ========== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(60, 31, 15, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0 2rem;
+            transition: box-shadow var(--transition);
+        }
+        .navbar.scrolled {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+        }
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .navbar-logo {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--orange-light);
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .navbar-logo .crab-icon {
+            font-size: 1.5rem;
+        }
+        .navbar-links {
+            display: flex;
+            list-style: none;
+            gap: 0.3rem;
+            align-items: center;
+        }
+        .navbar-links a {
+            color: #DCC8B4;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.45rem 1rem;
+            border-radius: 6px;
+            transition: all var(--transition);
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+        }
+        .navbar-links a:hover {
+            color: #FFF;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .navbar-cta {
+            background: var(--orange) !important;
+            color: #FFF !important;
+            font-weight: 600 !important;
+            padding: 0.5rem 1.2rem !important;
+            border-radius: 22px !important;
+            letter-spacing: 0.03em !important;
+        }
+        .navbar-cta:hover {
+            background: var(--orange-deep) !important;
+            box-shadow: 0 4px 16px rgba(212, 132, 58, 0.4);
+            transform: translateY(-1px);
+        }
+        /* 移动端汉堡菜单 */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.4rem;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: #DCC8B4;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: rgba(60, 31, 15, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.5rem 2rem;
+            flex-direction: column;
+            gap: 0.6rem;
+            z-index: 999;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .mobile-menu a {
+            color: #DCC8B4;
+            text-decoration: none;
+            font-size: 1.05rem;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            transition: all var(--transition);
+            display: block;
+            letter-spacing: 0.03em;
+        }
+        .mobile-menu a:hover {
+            color: #FFF;
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .mobile-menu .mobile-cta {
+            background: var(--orange);
+            color: #FFF !important;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 24px;
+            margin-top: 0.5rem;
+            padding: 0.75rem 1rem !important;
+        }
+
+        /* ========== Banner ========== */
+        .banner {
+            position: relative;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #2C1810 0%, #3C1F0F 25%, #1F0E06 60%, #0D0502 100%);
+            overflow: hidden;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -20%;
+            width: 140%;
+            height: 160%;
+            background:
+                radial-gradient(ellipse at 62% 35%, rgba(212, 132, 58, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 35% 55%, rgba(240, 168, 85, 0.07) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 70%, rgba(180, 100, 40, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            animation: bannerGlow 8s ease-in-out infinite;
+        }
+        @keyframes bannerGlow {
+            0%,
+            100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+        .banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='0.4' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E") repeat;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            max-width: 720px;
+        }
+        .banner-badge {
+            display: inline-block;
+            background: rgba(212, 132, 58, 0.2);
+            border: 1px solid rgba(212, 132, 58, 0.35);
+            color: var(--orange-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.4rem 1.3rem;
+            border-radius: 20px;
+            letter-spacing: 0.06em;
+            margin-bottom: 1.6rem;
+        }
+        .banner h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            color: #FFF;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+        .banner h1 .highlight {
+            color: var(--orange-light);
+            position: relative;
+            display: inline-block;
+        }
+        .banner h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(212, 132, 58, 0.25);
+            border-radius: 4px;
+            z-index: -1;
+        }
+        .banner-subtitle {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            color: #C9B8A8;
+            letter-spacing: 0.04em;
+            margin-bottom: 2.4rem;
+            line-height: 1.6;
+        }
+        .banner-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange);
+            color: #FFF;
+            font-weight: 600;
+            font-size: 1.05rem;
+            padding: 0.85rem 2.2rem;
+            border-radius: 28px;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: all var(--transition);
+            box-shadow: 0 8px 28px rgba(212, 132, 58, 0.35);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: #E89945;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(212, 132, 58, 0.5);
+        }
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: #FFF;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 0.8rem 2rem;
+            border-radius: 28px;
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            border-color: #FFF;
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-3px);
+        }
+        .banner-scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounceDown 2s ease-in-out infinite;
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        .banner-scroll-hint span {
+            display: block;
+            width: 28px;
+            height: 28px;
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+            transform: rotate(45deg);
+        }
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ========== Section 通用 ========== */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--orange);
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            color: var(--brown-dark);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+        .section-desc {
+            color: var(--gray-text);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            letter-spacing: 0.02em;
+        }
+        .section-alt {
+            background: var(--cream);
+        }
+
+        /* ========== 产地优势 ========== */
+        .origin-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .origin-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem 1.8rem;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            border: 1px solid transparent;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .origin-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange), var(--orange-light));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .origin-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px);
+            border-color: rgba(212, 132, 58, 0.2);
+        }
+        .origin-card:hover::before {
+            opacity: 1;
+        }
+        .origin-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            display: block;
+            line-height: 1;
+        }
+        .origin-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--brown-dark);
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.03em;
+        }
+        .origin-card p {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
+
+        /* ========== 产品卖点 ========== */
+        .selling-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .selling-item {
+            text-align: center;
+            padding: 1.8rem 1rem;
+            border-radius: var(--radius-md);
+            transition: all var(--transition);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .selling-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .selling-emoji {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 0.7rem;
+        }
+        .selling-item strong {
+            display: block;
+            font-size: 1rem;
+            color: var(--brown-dark);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.3rem;
+        }
+        .selling-item span {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            letter-spacing: 0.02em;
+        }
+
+        /* ========== 产品规格卡片 ========== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+        .product-card:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-6px);
+        }
+        .product-card.featured {
+            border: 2px solid var(--orange-light);
+            box-shadow: var(--shadow-lg), 0 0 0 8px rgba(212, 132, 58, 0.06);
+        }
+        .product-card.featured::after {
+            content: '热门推荐';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--orange);
+            color: #FFF;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.3rem 0.9rem;
+            border-radius: 14px;
+            letter-spacing: 0.04em;
+            z-index: 2;
+        }
+        .product-card-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            display: block;
+            background: #F5EDE3;
+        }
+        .product-card-body {
+            padding: 1.8rem 1.6rem 2rem;
+        }
+        .product-card-body h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--brown-dark);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+        }
+        .product-specs {
+            list-style: none;
+            margin-bottom: 1.2rem;
+        }
+        .product-specs li {
+            padding: 0.35rem 0;
+            color: var(--text-body);
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .product-specs li::before {
+            content: '✓';
+            color: var(--orange);
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .product-card-body .btn-primary {
+            width: 100%;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 0.75rem;
+            border-radius: 24px;
+        }
+
+        /* ========== 实拍图片区 ========== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+        .gallery-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            cursor: pointer;
+            background: #F5EDE3;
+            position: relative;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+        .gallery-item:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ========== 购买咨询 ========== */
+        .buy-section-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .buy-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--brown-dark);
+            letter-spacing: 0.04em;
+            margin-bottom: 1rem;
+        }
+        .buy-info p {
+            color: var(--gray-text);
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+            letter-spacing: 0.02em;
+        }
+        .buy-steps {
+            list-style: none;
+            counter-reset: step;
+            margin: 1.5rem 0;
+        }
+        .buy-steps li {
+            counter-increment: step;
+            padding: 0.5rem 0 0.5rem 2.2rem;
+            position: relative;
+            color: var(--text-body);
+            letter-spacing: 0.02em;
+            font-size: 0.95rem;
+        }
+        .buy-steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            width: 26px;
+            height: 26px;
+            background: var(--orange);
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        .chat-bubble {
+            background: #F0F7F0;
+            border-radius: var(--radius-lg);
+            padding: 1.5rem 1.8rem;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            letter-spacing: 0.02em;
+        }
+        .chat-bubble::before {
+            content: '';
+            position: absolute;
+            top: 16px;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: #F0F7F0;
+            border-left: 1px solid rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transform: rotate(45deg);
+            border-radius: 0 0 0 4px;
+        }
+        .chat-bubble .label {
+            font-size: 0.8rem;
+            color: #888;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+        }
+        .chat-bubble .msg {
+            font-size: 0.95rem;
+            color: #2C4A2C;
+            line-height: 1.6;
+            background: #E8F2E8;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 100%;
+        }
+        .contact-info {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .contact-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--white);
+            border: 1.5px solid var(--orange-light);
+            color: var(--orange-deep);
+            padding: 0.6rem 1.3rem;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+        .contact-pill:hover {
+            background: var(--orange);
+            color: #FFF;
+            border-color: var(--orange);
+            box-shadow: 0 6px 20px rgba(212, 132, 58, 0.3);
+        }
+
+        /* ========== 售后说明 ========== */
+        .after-sales-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .after-sales-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 1.8rem;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--orange);
+            transition: all var(--transition);
+        }
+        .after-sales-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .after-sales-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--brown-dark);
+            letter-spacing: 0.03em;
+            margin-bottom: 0.6rem;
+        }
+        .after-sales-card p {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
+        .highlight-text {
+            background: #FFF8EF;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-top: 2.5rem;
+            text-align: center;
+            border: 1px dashed rgba(212, 132, 58, 0.3);
+            letter-spacing: 0.03em;
+            font-size: 1.05rem;
+            color: var(--brown-dark);
+            line-height: 1.7;
+        }
+        .highlight-text strong {
+            color: var(--orange-deep);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+        }
+
+        /* ========== 页脚 ========== */
+        .footer {
+            background: var(--brown-dark);
+            color: #B8A494;
+            text-align: center;
+            padding: 3rem 2rem;
+            letter-spacing: 0.03em;
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+        .footer strong {
+            color: var(--orange-light);
+            font-weight: 600;
+        }
+        .footer .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: #FFF;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ========== 响应式设计 ========== */
+        @media (max-width: 1024px) {
+            .selling-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .selling-grid .selling-item:nth-child(4),
+            .selling-grid .selling-item:nth-child(5) {
+                grid-column: span 1;
+            }
+            .buy-section-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .chat-bubble::before {
+                top: -10px;
+                left: 20px;
+                transform: rotate(-45deg);
+                border-radius: 0 4px 0 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .section {
+                padding: 3rem 1.3rem;
+            }
+            .origin-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .selling-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .selling-item {
+                padding: 1.3rem 0.8rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .after-sales-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .banner {
+                min-height: 80vh;
+                padding: 3rem 1.3rem;
+            }
+            .banner h1 {
+                font-size: 2rem;
+            }
+            .banner-subtitle {
+                font-size: 0.95rem;
+            }
+            .btn-primary,
+            .btn-outline {
+                font-size: 0.95rem;
+                padding: 0.7rem 1.5rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .product-card-img {
+                height: 200px;
+            }
+            .navbar-inner {
+                height: 56px;
+            }
+            .mobile-menu {
+                top: 56px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .selling-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .selling-item {
+                padding: 1rem 0.5rem;
+            }
+            .selling-emoji {
+                font-size: 1.8rem;
+            }
+            .selling-item strong {
+                font-size: 0.85rem;
+            }
+            .selling-item span {
+                font-size: 0.75rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .banner h1 {
+                font-size: 1.7rem;
+            }
+            .banner-subtitle {
+                font-size: 0.85rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .origin-card {
+                padding: 1.5rem 1.2rem;
+            }
+            .product-card-body {
+                padding: 1.3rem 1.1rem 1.5rem;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+            .contact-pill {
+                justify-content: center;
+            }
+            .highlight-text {
+                padding: 1.3rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== 导航栏 ==================== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-logo">
+                <span class="crab-icon">🦀</span> 安丰大闸蟹
+            </a>
+            <ul class="navbar-links">
+                <li><a href="#origin">产地优势</a></li>
+                <li><a href="#products">产品规格</a></li>
+                <li><a href="#gallery">实拍展示</a></li>
+                <li><a href="#buy">购买咨询</a></li>
+                <li><a href="#after-sales">售后承诺</a></li>
+                <li><a href="#buy" class="navbar-cta">📞 立即订购</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="菜单">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#origin">产地优势</a>
+        <a href="#products">产品规格</a>
+        <a href="#gallery">实拍展示</a>
+        <a href="#buy">购买咨询</a>
+        <a href="#after-sales">售后承诺</a>
+        <a href="#buy" class="mobile-cta">📞 立即订购</a>
+    </div>
+
+    <!-- ==================== Banner ==================== -->
+    <section class="banner" id="home">
+        <div class="banner-content">
+            <div class="banner-badge">🦀 兴化安丰 · 核心湖区直供</div>
+            <h1>蟹黄满到<span class="highlight">犯规</span><br>膏香黏住嘴唇</h1>
+            <p class="banner-subtitle">
+                兴化安丰核心产区直发 · 一只也是源头价<br>
+                死蟹包赔，鲜活到家，顺丰冷链直达
+            </p>
+            <div class="banner-cta-group">
+                <a href="#buy" class="btn-primary">🦀 立即订购</a>
+                <a href="#origin" class="btn-outline">了解产地 ↓</a>
+            </div>
+        </div>
+        <div class="banner-scroll-hint" onclick="document.getElementById('origin').scrollIntoView({behavior:'smooth'})">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ==================== 产地优势 ==================== -->
+    <section class="section" id="origin">
+        <span class="section-label">· 原产地 ·</span>
+        <h2 class="section-title">安丰，大闸蟹的黄金户口</h2>
+        <p class="section-desc">
+            不是所有大闸蟹，都活在安丰的活水里。国家级生态湿地，不可复制的天然牧场。
+        </p>
+        <div class="origin-grid">
+            <div class="origin-card">
+                <span class="origin-icon">🌿</span>
+                <h3>国家级生态湿地</h3>
+                <p>兴化安丰地处里下河腹地，湖荡相连、水网密布，是大闸蟹生长不可复制的天然牧场。</p>
+            </div>
+            <div class="origin-card">
+                <span class="origin-icon">💧</span>
+                <h3>活水自循环</h3>
+                <p>引洪泽湖、高邮湖活水，随潮汐自然更换，水草繁茂、溶氧充足，养出的蟹自带一股清甜。</p>
+            </div>
+            <div class="origin-card">
+                <span class="origin-icon">🐚</span>
+                <h3>慢养出好蟹</h3>
+                <p>一亩水面只放几百只，全程喂螺蛳、玉米、小杂鱼。不催熟、不增肥，让蟹自然足龄长成。</p>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:2rem;font-weight:600;color:var(--brown-dark);letter-spacing:0.04em;">
+            📍 全程自家塘口直供，不贩陌生蟹，不卖过水蟹
+        </p>
+    </section>
+
+    <!-- ==================== 产品卖点 ==================== -->
+    <section class="section section-alt" id="selling-points">
+        <span class="section-label">· 五条硬标准 ·</span>
+        <h2 class="section-title">敢掰开给你看的好蟹</h2>
+        <p class="section-desc">每一条承诺都经得起检验，每一只螃蟹都对得起信任。</p>
+        <div class="selling-grid">
+            <div class="selling-item">
+                <span class="selling-emoji">🟡</span>
+                <strong>膏满黄肥</strong>
+                <span>母蟹黄硬如咸蛋黄，公蟹膏白如凝脂</span>
+            </div>
+            <div class="selling-item">
+                <span class="selling-emoji">😋</span>
+                <strong>肉质鲜甜</strong>
+                <span>白水清蒸就足够好吃，不带一丝土腥</span>
+            </div>
+            <div class="selling-item">
+                <span class="selling-emoji">🫧</span>
+                <strong>鲜活发货</strong>
+                <span>凌晨捕捞，中午分拣，下午顺丰发出</span>
+            </div>
+            <div class="selling-item">
+                <span class="selling-emoji">📦</span>
+                <strong>顺丰冷链</strong>
+                <span>专业水产包装，全程低温锁鲜空运直达</span>
+            </div>
+            <div class="selling-item">
+                <span class="selling-emoji">🛡️</span>
+                <strong>死蟹包赔</strong>
+                <span>签收6小时内拍图即赔，秒到账不废话</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 产品规格 ==================== -->
+    <section class="section" id="products">
+        <span class="section-label">· 规格选择 ·</span>
+        <h2 class="section-title">自吃过瘾，送礼有面</h2>
+        <p class="section-desc">母蟹2.5两 + 公蟹3.5两，8只装/10只装可选，依时令挑蟹，确保巅峰膏黄期。</p>
+        <div class="product-grid">
+            <!-- 家庭自享装 -->
+            <div class="product-card">
+                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/6c11523a95804a47a7970d2343090243.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=RIHt%2BBj9Y1td18%2BSzXCN8R1qw1A%3D" alt="家庭自享装" class="product-card-img" loading="lazy">
+                <div class="product-card-body">
+                    <h3>🏠 家庭自享装</h3>
+                    <ul class="product-specs">
+                        <li>母蟹 2.5两 + 公蟹 3.5两 各半</li>
+                        <li>8只装（4母4公）</li>
+                        <li>10只装（5母5公）</li>
+                        <li>顺丰冷链，鲜活到手</li>
+                    </ul>
+                    <a href="#buy" class="btn-primary">微信咨询下单 →</a>
+                </div>
+            </div>
+            <!-- 尊享礼盒装 -->
+            <div class="product-card featured">
+                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/5498b9546b2045e0ab6ccb4ec98e8c10.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=t%2By26UjGVdZfUGy%2FqjJVLQXzDww%3D" alt="尊享礼盒装" class="product-card-img" loading="lazy">
+                <div class="product-card-body">
+                    <h3>🎁 尊享礼盒装</h3>
+                    <ul class="product-specs">
+                        <li>同等规格，定制精美礼盒</li>
+                        <li>含蟹醋、蟹工具、保温手提袋</li>
+                        <li>8只装 / 10只装可选</li>
+                        <li>送礼体面，心意直达</li>
+                    </ul>
+                    <a href="#buy" class="btn-primary">微信咨询下单 →</a>
+                </div>
+            </div>
+        </div>
+        <p style="text-align:center;margin-top:1.5rem;font-size:0.9rem;color:var(--gray-text);letter-spacing:0.03em;">
+            * 缺斤短两、空壳无膏，当场赔付。每年蟹季依时令调整挑蟹标准，确保巅峰口感。
+        </p>
+    </section>
+
+    <!-- ==================== 实拍图片区 ==================== -->
+    <section class="section section-alt" id="gallery">
+        <span class="section-label">· 实拍展示 ·</span>
+        <h2 class="section-title">塘口直出，所见即所得</h2>
+        <p class="section-desc">以下图片均为安丰塘口实拍，真实呈现大闸蟹养殖、分拣、发货全流程。</p>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/43097cac3c0440f8ad5584baed6cdfc0.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=KV3Hah8du4wHZHzw8EPtC8Cz10s%3D" alt="安丰水域捕捞实拍" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/afe4bc9b249f4658b5572879861ea90d.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=dmKWlJsUfvh9fpJrVdHXLACIOHA%3D" alt="大闸蟹分拣打包" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/8dc8673d618c48ac9c3dfa801d2afc51.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=wnqEo%2F3zzpRmO%2BGoqFspfvDyINg%3D" alt="顺丰冷链发货" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/0f34e76acc3641859645f32644adaca8.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=E0stAmoCVb3hcvOxOr%2BQnYuCrjA%3D" alt="大闸蟹分拣实拍" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/a4f7230d67de4a3ba238de3a1ecd98de.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=pQb4oYTMEGIHt8uKK2kODBD2DU8%3D" alt="安丰养殖基地航拍" loading="lazy">
+            </div>
+            <div class="gallery-item">
+                <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/ee898ddb66f248d6bd5624da67d7b757.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&rcl=20260517011722C429510E56F8F7C1F32D&rrcfp=8a172a1a&x-expires=1779556642&x-signature=08BJK5qRCr1FPuJ%2BQzaUDIaIcr8%3D" alt="安丰养殖区实拍" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 购买咨询 ==================== -->
+    <section class="section" id="buy">
+        <span class="section-label">· 立即下单 ·</span>
+        <h2 class="section-title">怎样下单最快吃上？</h2>
+        <p class="section-desc">添加微信或拨打电话，当天下午4点前下单，当天鲜活发出。</p>
+        <div class="buy-section-inner">
+            <div class="buy-info">
+                <h3>📋 三步吃上好蟹</h3>
+                <ol class="buy-steps">
+                    <li><strong>添加微信</strong>：保存号码 <strong>15295252368</strong>（微信号：zx2476588），直接添加好友。</li>
+                    <li><strong>发送需求</strong>：告知规格和地址，我们秒回确认。</li>
+                    <li><strong>坐等收货</strong>：顺丰冷链直达，通常1-2天鲜活到家。</li>
+                </ol>
+                <div class="contact-info">
+                    <a href="tel:15295252368" class="contact-pill">📞 拨打电话 15295252368</a>
+                    <a href="#" class="contact-pill">💬 微信 zx2476588</a>
+                </div>
+            </div>
+            <div class="chat-bubble">
+                <div class="label">💬 直接复制这段话发给我们：</div>
+                <div class="msg">
+                    “你好，我要一盒10只礼盒装，母2.5公3.5，发顺丰。地址是……”
+                </div>
+                <p style="margin-top:1rem;font-size:0.85rem;color:#777;letter-spacing:0.02em;">
+                    我们秒回，不问废话。每日16:00前截单，当日现捕直发。<br>
+                    微信：zx2476588 | 电话：15295252368
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 售后承诺 & 配送说明 ==================== -->
+    <section class="section section-alt" id="after-sales">
+        <span class="section-label">· 安心保障 ·</span>
+        <h2 class="section-title">售后的底气，来自塘口的自信</h2>
+        <p class="section-desc">把顾虑都留给我们，你只管等蟹上门。</p>
+        <div class="after-sales-grid">
+            <div class="after-sales-card">
+                <h4>🛡️ 死蟹包赔，当场兑现</h4>
+                <p>签收6小时内，将死蟹和快递面单一起拍照发客服（微信：zx2476588），立即按只退款或下次抵扣，不扯皮不拖延。</p>
+            </div>
+            <div class="after-sales-card">
+                <h4>⚖️ 重量不足补差价</h4>
+                <p>每一只蟹都在绑绳前足规格，运输轻微吐水属正常。若克重差距明显，拍照即退差额。</p>
+            </div>
+            <div class="after-sales-card">
+                <h4>🚚 配送时效说明</h4>
+                <p>每日16:00前截单，当日现捕直发。全国主要城市次日或隔日达，偏远地区时效顺延，下单前可致电15295252368咨询。</p>
+            </div>
+            <div class="after-sales-card">
+                <h4>🧊 活蟹储存提醒</h4>
+                <p>收到后请立即从泡沫箱取出，盖湿毛巾放冰箱冷藏（3-7℃），3天内食用风味最佳。</p>
+            </div>
+        </div>
+        <div class="highlight-text">
+            <strong>🦀 最后一句大实话</strong><br>
+            我们敢把塘口亮在安丰，不怕你来看，因为好水养好蟹，不需要讲太多道理。<br>
+            咨询/下单：微信 zx2476588 | 电话 15295252368
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer class="footer">
+        <div class="footer-brand">🦀 兴化安丰大闸蟹</div>
+        <p>合作社直营 · 正宗原产地直供</p>
+        <p>电话：<strong>15295252368</strong> | 微信：<strong>zx2476588</strong></p>
+        <p style="margin-top:0.5rem;opacity:0.6;">© 2024 兴化安丰大闸蟹合作社 · 保留所有权利</p>
+    </footer>
+
+    <!-- ==================== 脚本：导航交互 ==================== -->
+    <script>
+        // 导航栏滚动阴影
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 移动端菜单切换
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        // 点击菜单链接后关闭
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        // 点击页面其他区域关闭菜单
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
